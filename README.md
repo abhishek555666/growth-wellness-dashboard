@@ -1,0 +1,116 @@
+# Growth Wellness Store — Operations Dashboard
+
+A responsive, production-ready React operations dashboard for **Growth Wellness Store** built with Vite, React 18, and pure modular CSS.
+
+---
+
+## 1. Overview & Key Capabilities
+
+* **Executive Sales KPIs**: Dynamic calculations derived directly from the source dataset:
+  * **Gross Revenue**: Sum of `amountINR` for Completed orders only (`₹ 66,065`).
+  * **Completed Orders**: Total count of completed orders (`53`).
+  * **Units Sold**: Sum of `quantity` across completed orders (`85`).
+  * **Pending Orders**: Total count of pending orders (`19`).
+* **Visual Data Insights**:
+  * **Revenue Trend**: Dynamic weekly revenue line chart rendered with clean SVG polylines and points generated from completed transactions.
+  * **Orders by Channel**: Real-time distribution breakdown across Website, Mobile App, and Marketplace with custom progress indicators.
+* **Filterable & Paginated Transaction Table**:
+  * Combined real-time filtering: **Status** (All, Completed, Pending, Refunded, Cancelled) + **Channel** (All, Website, Mobile App, Marketplace) + **Date Range**.
+  * Sorted newest first (`date descending`).
+  * Accessible pagination (10 rows per page) with page navigation and record counters.
+* **Interactive Date Range Filter**:
+  * Functional date selector in the top header with quick preset filters (All Time, Aug 2026, Sep 2026, Oct 2026, Nov 2026) and custom date inputs.
+* **100% Inline-Style Free**: Strictly styled with structured CSS custom properties in `src/styles/global.css`.
+* **Zero Horizontal Overflow**: Verified at 1440px desktop, 768px tablet, and 390px/320px mobile viewports.
+
+---
+
+## 2. Component Hierarchy
+
+```
+App.jsx (Root coordinator, state management for filters & dynamic metrics)
+├── Sidebar.jsx (Brand identity, navigation links, tablet/mobile drawer menu)
+├── Header.jsx (Page heading, subtitle, interactive date range filter badge & dropdown)
+├── StatCard.jsx (Reusable KPI metric cards with Indian Rupee formatting)
+├── RevenueTrend.jsx (Dynamic SVG line chart of weekly completed revenue)
+├── ChannelBreakdown.jsx (Dynamic SVG progress bars by sales channel)
+└── TransactionTable.jsx (Recent transactions table, status/channel filters, pagination)
+```
+
+---
+
+## 3. Data Schema & Aggregation Contract
+
+The application consumes data according to `source_data/data_contract.json`:
+
+```json
+{
+  "schemaVersion": "1.0",
+  "currency": "INR",
+  "timeZone": "Asia/Kolkata",
+  "status": ["Completed", "Pending", "Refunded", "Cancelled"],
+  "revenueRule": "Count amountINR only when status = Completed",
+  "orderCountRule": "Count completed transactions only",
+  "unitsRule": "Sum quantity for Completed transactions",
+  "pageSize": 10,
+  "sorting": "date descending"
+}
+```
+
+### Baseline Dataset Summary (96 Records)
+* Total Transactions: 96
+* Completed: 53 (Gross Revenue: ₹66,065 | Units: 85)
+* Pending: 19
+* Refunded: 13
+* Cancelled: 11
+* Channels (Completed): Website (17), Mobile App (16), Marketplace (20)
+
+---
+
+## 4. Local Development & Setup
+
+### Prerequisites
+* Node.js $\ge$ 18.0.0
+* npm $\ge$ 9.0.0
+
+### Installation
+```sh
+npm install
+```
+
+### Start Development Server
+```sh
+npm run dev
+```
+The server will start at `http://127.0.0.1:5173/`.
+
+### Production Build
+```sh
+npm run build
+```
+Build output is generated into the `dist/` directory with zero errors and minified assets.
+
+### Preview Production Build
+```sh
+npm run preview
+```
+
+---
+
+## 5. Verified Browser & Responsive Test Matrix
+
+| Environment / Device | Viewport | Result | Notes |
+| :--- | :---: | :---: | :--- |
+| **Desktop (Chrome)** | 1440 × 900 | ✅ PASS | Fixed sidebar, 4 KPI cards row, visual charts, full table |
+| **Desktop (Firefox)** | 1920 × 1080 | ✅ PASS | All SVG elements, fonts, and grid alignments verified |
+| **Tablet (iPad / Chrome)** | 768 × 1024 | ✅ PASS | Top header bar, 2×2 KPI grid, responsive table reflow |
+| **Mobile (iPhone 14 / Safari)** | 390 × 844 | ✅ PASS | Single column cards, isolated table scroll, 0px body overflow |
+| **Compact Mobile (Chrome)** | 320 × 568 | ✅ PASS | Clean wrapping, accessible touch targets, 0px horizontal scroll |
+
+---
+
+## 6. Accessibility & Best Practices
+
+* **Semantic HTML**: Proper landmarks (`<header>`, `<aside>`, `<main>`, `<article>`, `<section>`, `<table>`).
+* **ARIA Support**: Dialog roles, `aria-expanded` attributes on interactive toggles, `scope="col"` headers on table elements.
+* **Keyboard Accessible**: Dropdowns and inputs are fully navigable via standard keyboard controls.

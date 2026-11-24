@@ -1,0 +1,917 @@
+/* Growth Wellness Store - Dashboard Global Styles */
+:root {
+  --color-forest: #173F35;
+  --color-forest-dark: #0f2d26;
+  --color-forest-active: #275246;
+  --color-leaf: #4D8A64;
+  --color-sage: #6A9A7B;
+  --color-sage-light: #e8f0eb;
+  --color-canvas: #F4F7F2;
+  --color-white: #FFFFFF;
+  --color-divider: #DFE8DF;
+  --color-border: #DFE8DF;
+  --color-highlight: #D7AE62;
+  --color-highlight-bg: #fdf8ed;
+  
+  --color-text-primary: #173F35;
+  --color-text-secondary: #577367;
+  --color-text-muted: #7d968b;
+  --color-text-inverse: #FFFFFF;
+  
+  --color-status-completed-bg: #eaf4ed;
+  --color-status-completed-text: #235642;
+  --color-status-pending-bg: #fdf6e9;
+  --color-status-pending-text: #966b1e;
+  --color-status-refunded-bg: #eef3f7;
+  --color-status-refunded-text: #375b75;
+  --color-status-cancelled-bg: #fbeeed;
+  --color-status-cancelled-text: #8c3830;
+
+  --font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --shadow-card: 0 1px 3px rgba(23, 63, 53, 0.04);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-family);
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* App Shell Layout */
+.appShell {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: var(--color-forest);
+  color: var(--color-text-inverse);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 24px;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebarBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.sidebarLogoSvg {
+  height: 48px;
+  width: auto;
+}
+
+.sidebarBrandText {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandName {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-white);
+  line-height: 1.1;
+}
+
+.brandTagline {
+  font-size: 9px;
+  letter-spacing: 2.2px;
+  color: #a3c2b2;
+  text-transform: uppercase;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  color: #c0d8cb;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.navItem:hover {
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navItem.active {
+  background-color: var(--color-forest-active);
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.sidebarFooter {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.internalTag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #799a8b;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Tablet / Mobile Top Bar */
+.tabletBar {
+  display: none;
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  padding: 16px 24px;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+}
+
+.tabletLogoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tabletRightControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.activeNavBadge {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.hamburgerBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  font-size: 20px;
+  border-radius: var(--radius-sm);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobileMenuOverlay {
+  display: none;
+}
+
+/* Main Dashboard Area */
+.mainContent {
+  padding: 40px 48px;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Header Component */
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.headerTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pageTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.pageSubtitle {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+/* Date Range Filter in Header */
+.dateRangeWrapper {
+  position: relative;
+}
+
+.dateRangeBadge {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.15s ease;
+}
+
+.dateRangeBadge:hover, .dateRangeBadge:focus {
+  border-color: var(--color-leaf);
+  outline: none;
+}
+
+.dateRangeIcon {
+  color: var(--color-leaf);
+  font-size: 14px;
+}
+
+.dropdownCaret {
+  font-size: 10px;
+  margin-left: 4px;
+  color: var(--color-text-secondary);
+}
+
+.dateDropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(23, 63, 53, 0.12);
+  padding: 18px;
+  z-index: 100;
+  width: 320px;
+}
+
+.dateDropdownHeader {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.datePresets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.presetBtn {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.presetBtn:hover, .presetBtn.active {
+  background: var(--color-forest);
+  color: var(--color-white);
+  border-color: var(--color-forest);
+}
+
+.dateInputsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.dateInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dateInputLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.dateInput {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--color-leaf);
+}
+
+.dateDropdownFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+
+.dateResetBtn {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.dateApplyBtn {
+  background: var(--color-forest);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* KPI StatCard Grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.statCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.statCard:hover {
+  box-shadow: 0 4px 12px rgba(23, 63, 53, 0.06);
+}
+
+.statLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.statSubtext {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* Middle Visual Section: Trend and Channel Breakdown */
+.visualSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.cardPanel {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.panelTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.panelSubtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* SVG Trend Chart */
+.chartContainer {
+  width: 100%;
+  height: 180px;
+}
+
+.svgTrendChart {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.gridLine {
+  stroke: #e6eee7;
+  stroke-width: 1;
+}
+
+.trendLine {
+  fill: none;
+  stroke: var(--color-leaf);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trendDot {
+  fill: var(--color-leaf);
+  stroke: var(--color-white);
+  stroke-width: 2;
+  cursor: pointer;
+  transition: r 0.2s ease;
+}
+
+.trendDot:hover {
+  r: 6;
+}
+
+.trendArea {
+  fill: url(#trendGradient);
+}
+
+/* Channel Breakdown */
+.channelList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  height: calc(100% - 44px);
+}
+
+.channelItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.channelItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.channelName {
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.channelStats {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+/* Channel Progress Bar SVG */
+.channelBarTrack {
+  width: 100%;
+  height: 12px;
+}
+
+.channelBarSvg {
+  width: 100%;
+  height: 12px;
+  display: block;
+}
+
+.barBackground {
+  fill: #eaf1ea;
+}
+
+.barFill {
+  transition: width 0.4s ease-out;
+}
+
+.fillWebsite {
+  fill: #2E5F4E;
+}
+
+.fillMobileApp {
+  fill: #55966B;
+}
+
+.fillMarketplace {
+  fill: #D7AE62;
+}
+
+/* Recent Transactions Table Section */
+.tableCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.tableToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tableTitleGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.tableCountBadge {
+  font-size: 12px;
+  background: var(--color-canvas);
+  color: var(--color-text-secondary);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.filterControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--color-leaf);
+}
+
+.resetFiltersBtn {
+  background: transparent;
+  border: 1px dashed var(--color-divider);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.resetFiltersBtn:hover {
+  background: var(--color-canvas);
+  color: var(--color-text-primary);
+  border-style: solid;
+}
+
+/* Table styling */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.dataTable th {
+  background-color: #f7faf6;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dataTable th:first-child {
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.dataTable th:last-child {
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.dataTable td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-divider);
+  color: var(--color-text-primary);
+}
+
+.dataTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dataTable tbody tr:hover {
+  background-color: #fcfdfb;
+}
+
+.txnIdCell {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.amountCell {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.dateCell {
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* Status Pill Badges */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.statusCompleted {
+  background-color: var(--color-status-completed-bg);
+  color: var(--color-status-completed-text);
+}
+
+.statusPending {
+  background-color: var(--color-status-pending-bg);
+  color: var(--color-status-pending-text);
+}
+
+.statusRefunded {
+  background-color: var(--color-status-refunded-bg);
+  color: var(--color-status-refunded-text);
+}
+
+.statusCancelled {
+  background-color: var(--color-status-cancelled-bg);
+  color: var(--color-status-cancelled-text);
+}
+
+/* Empty State */
+.emptyState {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.emptyStateTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+/* Pagination Bar */
+.paginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-divider);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.paginationSummary {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.paginationBtn {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.paginationBtn:hover:not(:disabled) {
+  border-color: var(--color-leaf);
+  background-color: var(--color-canvas);
+}
+
+.paginationBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paginationBtn.active {
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  border-color: var(--color-forest);
+  font-weight: 600;
+}
+
+/* Responsive Breakpoints */
+
+/* Tablet (768px to 1099px) */
+@media (max-width: 1099px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+
+  .tabletBar {
+    display: flex;
+  }
+
+  .mobileMenuOverlay.open {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-forest);
+    padding: 20px 24px;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mainContent {
+    padding: 28px 24px;
+  }
+
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .visualSection {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Mobile Screens (< 768px down to 320px) */
+@media (max-width: 767px) {
+  .mainContent {
+    padding: 20px 16px;
+  }
+
+  .headerContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .pageTitle {
+    font-size: 26px;
+  }
+
+  .dateRangeBadge {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .dateDropdown {
+    width: 100%;
+    right: 0;
+    left: 0;
+  }
+
+  .kpiGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .statCard {
+    padding: 20px;
+  }
+
+  .statValue {
+    font-size: 28px;
+  }
+
+  .cardPanel, .tableCard {
+    padding: 20px 16px;
+  }
+
+  .tableToolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+
+  .paginationContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
