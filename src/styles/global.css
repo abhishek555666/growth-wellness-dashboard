@@ -663,13 +663,22 @@ html, body {
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 26px 28px;
+  padding: 24px 28px;
   box-shadow: var(--shadow-card);
   width: 100%;
   box-sizing: border-box;
   min-width: 0;
   max-width: 100%;
   overflow: hidden;
+}
+
+.tableToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .tableContainer {
@@ -695,9 +704,10 @@ html, body {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 .dataTable th:first-child {
@@ -711,10 +721,11 @@ html, body {
 }
 
 .dataTable td {
-  padding: 16px 18px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--color-divider);
   color: var(--color-text-primary);
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 .dataTable tbody tr:last-child td {
@@ -773,7 +784,7 @@ html, body {
 
 /* Empty State */
 .emptyState {
-  padding: 48px 24px;
+  padding: 40px 20px;
   text-align: center;
   color: var(--color-text-muted);
 }
@@ -790,8 +801,8 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 22px;
-  padding-top: 18px;
+  margin-top: 18px;
+  padding-top: 16px;
   border-top: 1px solid var(--color-divider);
   flex-wrap: wrap;
   gap: 12px;
@@ -801,6 +812,9 @@ html, body {
 .paginationSummary {
   font-size: 13px;
   color: var(--color-text-secondary);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
 }
 
 .paginationControls {
@@ -820,10 +834,14 @@ html, body {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 6px 12px;
+  min-height: 32px;
   font-size: 13px;
   font-weight: 500;
   color: var(--color-text-primary);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.15s ease;
 }
 
