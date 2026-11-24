@@ -208,18 +208,24 @@ export default function TransactionTable({
               Previous
             </button>
 
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={`page-${page}`}
-                type="button"
-                className={`paginationBtn ${page === validCurrentPage ? 'active' : ''}`}
-                onClick={() => setCurrentPage(page)}
-                aria-label={`Page ${page}`}
-                aria-current={page === validCurrentPage ? 'page' : undefined}
-              >
-                {page}
-              </button>
-            ))}
+            <span className="paginationMobileIndicator" aria-current="page">
+              Page {validCurrentPage} of {totalPages}
+            </span>
+
+            <div className="paginationPagesGroup">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={`page-${page}`}
+                  type="button"
+                  className={`paginationBtn ${page === validCurrentPage ? 'active' : ''}`}
+                  onClick={() => setCurrentPage(page)}
+                  aria-label={`Page ${page}`}
+                  aria-current={page === validCurrentPage ? 'page' : undefined}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
 
             <button
               type="button"

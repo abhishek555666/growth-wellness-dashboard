@@ -49,7 +49,14 @@ html, body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
   max-width: 100vw;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -59,6 +66,7 @@ html, body {
   grid-template-columns: 240px minmax(0, 1fr);
   min-height: 100vh;
   width: 100%;
+  max-width: 100%;
 }
 
 /* Sidebar Styles */
@@ -651,14 +659,30 @@ html, body {
 }
 
 /* Table styling */
+.tableCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .tableContainer {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  display: block;
 }
 
 .dataTable {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
   text-align: left;
   font-size: 14px;
@@ -673,6 +697,7 @@ html, body {
   letter-spacing: 0.5px;
   padding: 14px 18px;
   border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
 }
 
 .dataTable th:first-child {
@@ -689,6 +714,7 @@ html, body {
   padding: 16px 18px;
   border-bottom: 1px solid var(--color-divider);
   color: var(--color-text-primary);
+  white-space: nowrap;
 }
 
 .dataTable tbody tr:last-child td {
@@ -769,6 +795,7 @@ html, body {
   border-top: 1px solid var(--color-divider);
   flex-wrap: wrap;
   gap: 12px;
+  width: 100%;
 }
 
 .paginationSummary {
@@ -780,6 +807,12 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.paginationPagesGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .paginationBtn {
@@ -811,12 +844,21 @@ html, body {
   font-weight: 600;
 }
 
+@media (min-width: 641px) {
+  .paginationMobileIndicator {
+    display: none;
+  }
+}
+
 /* Responsive Breakpoints */
 
 /* Tablet (768px to 1099px) */
 @media (max-width: 1099px) {
   .appShell {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   
   .sidebar {
@@ -838,80 +880,239 @@ html, body {
 
   .mainContent {
     padding: 28px 24px;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .kpiGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
+    width: 100%;
   }
 
   .visualSection {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 16px;
+    width: 100%;
   }
 }
 
 /* Mobile Screens (< 768px down to 320px) */
 @media (max-width: 767px) {
+  .appShell {
+    grid-template-columns: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .mainContent {
-    padding: 20px 16px;
+    padding: 16px 14px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .headerContainer {
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .headerTitleGroup {
+    width: 100%;
+    min-width: 0;
   }
 
   .pageTitle {
-    font-size: 26px;
+    font-size: 24px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .pageSubtitle {
+    font-size: 13.5px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .dateRangeWrapper {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
   }
 
   .dateRangeBadge {
     justify-content: center;
     width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    font-size: 13px;
   }
 
   .dateDropdown {
-    width: 100%;
-    right: 0;
+    position: absolute;
+    top: calc(100% + 8px);
     left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border-radius: var(--radius-md);
+  }
+
+  .datePresets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .presetBtn {
+    width: 100%;
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 11px;
+    box-sizing: border-box;
+  }
+
+  .dateInputsRow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .dateInput {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .kpiGrid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
+    width: 100%;
   }
 
   .statCard {
-    padding: 20px;
+    padding: 18px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .statLabel {
+    font-size: 13px;
+    margin-bottom: 8px;
   }
 
   .statValue {
-    font-size: 28px;
+    font-size: 26px;
+    margin-bottom: 6px;
   }
 
-  .cardPanel, .tableCard {
+  .statSubtext {
+    font-size: 11.5px;
+  }
+
+  .visualSection {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .cardPanel {
     padding: 20px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .panelHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+
+  .chartContainer {
+    height: 150px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tableCard {
+    padding: 18px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .tableToolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 14px;
   }
 
   .filterControls {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
+    width: 100%;
   }
 
   .filterSelect {
     width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .resetFiltersBtn {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 9px 12px;
   }
 
   .paginationContainer {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
+  }
+
+  .paginationPagesGroup {
+    display: none;
+  }
+
+  .paginationMobileIndicator {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    padding: 0 10px;
+  }
+}
+
+/* Extra small viewports (<= 360px down to 320px) */
+@media (max-width: 360px) {
+  .mainContent {
+    padding: 12px 10px;
+  }
+
+  .datePresets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pageTitle {
+    font-size: 22px;
+  }
+
+  .tableCard, .cardPanel {
+    padding: 16px 10px;
   }
 }
