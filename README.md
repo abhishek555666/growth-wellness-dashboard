@@ -101,11 +101,12 @@ npm run preview
 
 | Environment / Device | Viewport | Result | Notes |
 | :--- | :---: | :---: | :--- |
-| **Desktop (Chrome)** | 1440 × 900 | ✅ PASS | Fixed sidebar, 4 KPI cards row, visual charts, full table |
-| **Desktop (Firefox)** | 1920 × 1080 | ✅ PASS | All SVG elements, fonts, and grid alignments verified |
-| **Tablet (iPad / Chrome)** | 768 × 1024 | ✅ PASS | Top header bar, 2×2 KPI grid, responsive table reflow |
-| **Mobile (iPhone 14 / Safari)** | 390 × 844 | ✅ PASS | Single column cards, isolated table scroll, 0px body overflow |
-| **Compact Mobile (Chrome)** | 320 × 568 | ✅ PASS | Clean wrapping, accessible touch targets, 0px horizontal scroll |
+| **Desktop (High-Res)** | 1440 × 900 | ✅ PASS | Fixed sidebar, 4 KPI cards row, visual charts, full table |
+| **Tablet (iPad Landscape)** | 1024 × 768 | ✅ PASS | Top bar nav, 2×2 KPI grid, stacked charts, 0px page overflow |
+| **Tablet (iPad Portrait)** | 768 × 1024 | ✅ PASS | Top header bar, 2×2 KPI grid, isolated table scroll container |
+| **Mobile (Pixel 9)** | 412 × 924 | ✅ PASS | Single column cards, 100% width date dropdown, compact pagination |
+| **Mobile (iPhone 14)** | 390 × 844 | ✅ PASS | Single column cards, isolated table scroll, 0px body overflow |
+| **Compact Mobile** | 320 × 568 | ✅ PASS | 2-col date presets, wrap-safe typography, 0px horizontal scroll |
 
 ---
 
