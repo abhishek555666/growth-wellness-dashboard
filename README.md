@@ -39,23 +39,39 @@ App.jsx (Root coordinator, state management for filters & dynamic metrics)
 
 ---
 
-## 3. Data Schema & Aggregation Contract
+## 3. Data Source & Aggregation Rules
 
-The application consumes data according to `source_data/data_contract.json`:
+All dashboard analytics and table records are loaded directly from the local dataset at `src/data/transactions.json` (imported via `src/data.js`).
 
+### Transaction Record Structure
+Each record in `src/data/transactions.json` adheres to the following structure:
 ```json
 {
-  "schemaVersion": "1.0",
-  "currency": "INR",
-  "timeZone": "Asia/Kolkata",
-  "status": ["Completed", "Pending", "Refunded", "Cancelled"],
-  "revenueRule": "Count amountINR only when status = Completed",
-  "orderCountRule": "Count completed transactions only",
-  "unitsRule": "Sum quantity for Completed transactions",
-  "pageSize": 10,
-  "sorting": "date descending"
+  "transactionId": "TXN-0001",
+  "date": "2026-08-30",
+  "customerId": "CUST-018",
+  "productId": "PR-106",
+  "productName": "Ginger Turmeric Tea",
+  "category": "Tea & Infusions",
+  "quantity": 1,
+  "unitPriceINR": 549,
+  "amountINR": 549,
+  "status": "Pending",
+  "channel": "Mobile App",
+  "region": "East"
 }
 ```
+
+### Business Rules & KPI Calculations
+* **Currency:** Indian Rupee (INR / `₹`), formatted with Indian numbering conventions (`en-IN`).
+* **Gross Revenue:** Dynamic sum of `amountINR` for transactions with `status === 'Completed'` (`₹ 66,065`).
+* **Completed Orders:** Total count of transactions with `status === 'Completed'` (`53`).
+* **Units Sold:** Dynamic sum of `quantity` for transactions with `status === 'Completed'` (`85`).
+* **Pending Orders:** Total count of transactions with `status === 'Pending'` (`19`).
+* **Sorting:** Newest first (`date descending`).
+* **Pagination:** 10 records per page.
+
+*Note on Navigation Scope:* As specified in the project requirements (`COMPONENT_AND_TEST_SPEC.txt`), this implementation focuses on a single-page operations dashboard. `Overview` and `Transactions` serve as the active navigation anchors within this one-page scope, while `Customers`, `Products`, and `Settings` are visual navigation placeholders representing the broader platform shell.
 
 ### Baseline Dataset Summary (96 Records)
 * Total Transactions: 96

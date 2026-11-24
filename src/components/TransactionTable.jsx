@@ -96,7 +96,7 @@ export default function TransactionTable({
   };
 
   return (
-    <section className="tableCard" aria-label="Recent transactions management">
+    <section id="recent-transactions-section" className="tableCard" aria-label="Recent transactions management">
       <div className="tableToolbar">
         <div className="tableTitleGroup">
           <h2 className="panelTitle">Recent transactions</h2>

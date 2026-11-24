@@ -14,6 +14,12 @@ export default function Sidebar({ activeTab = 'overview', onTabSelect }) {
   const handleNavClick = (id) => {
     if (onTabSelect) onTabSelect(id);
     setMobileMenuOpen(false);
+    if (id === 'transactions') {
+      const el = document.getElementById('recent-transactions-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else if (id === 'overview') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   // Reusable vector logo matching original growth_logo.svg and dark theme
