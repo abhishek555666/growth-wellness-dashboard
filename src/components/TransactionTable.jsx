@@ -11,6 +11,8 @@ export default function TransactionTable({
   rows = [],
   startDate = '',
   endDate = '',
+  minDate = '2026-08-01',
+  maxDate = '2026-11-12',
   onDateChange,
   statusFilter: externalStatus,
   onStatusChange: externalSetStatus,
@@ -68,12 +70,13 @@ export default function TransactionTable({
   const startIndex = totalRecords === 0 ? 0 : (validCurrentPage - 1) * PAGE_SIZE + 1;
   const endIndex = Math.min(validCurrentPage * PAGE_SIZE, totalRecords);
 
-  const hasActiveFilters = statusFilter !== 'All' || channelFilter !== 'All';
+  const isDateFiltered = (startDate && startDate !== minDate) || (endDate && endDate !== maxDate);
+  const hasActiveFilters = statusFilter !== 'All' || channelFilter !== 'All' || isDateFiltered;
 
   const handleResetFilters = () => {
     handleStatusChange('All');
     handleChannelChange('All');
-    if (onDateChange) onDateChange('', '');
+    if (onDateChange) onDateChange(minDate, maxDate);
     setCurrentPage(1);
   };
 

@@ -116,6 +116,8 @@ export default function App() {
           rows={transactions}
           startDate={startDate}
           endDate={endDate}
+          minDate={minDate}
+          maxDate={maxDate}
           onDateChange={handleDateRangeChange}
           statusFilter={statusFilter}
           onStatusChange={setStatusFilter}
