@@ -22,6 +22,9 @@ export default function Sidebar({ activeTab = 'overview', onTabSelect }) {
     }
   };
 
+  const currentNav = NAV_ITEMS.find((item) => item.id === activeTab);
+  const activeNavLabel = currentNav ? currentNav.label : 'Overview';
+
   // Reusable vector logo matching original growth_logo.svg and dark theme
   const BrandLogo = () => (
     <div className="sidebarBrand">
@@ -73,7 +76,7 @@ export default function Sidebar({ activeTab = 'overview', onTabSelect }) {
           </svg>
         </div>
         <div className="tabletRightControls">
-          <span className="activeNavBadge">Overview</span>
+          <span className="activeNavBadge">{activeNavLabel}</span>
           <button
             type="button"
             className="hamburgerBtn"

@@ -71,7 +71,7 @@ Each record in `src/data/transactions.json` adheres to the following structure:
 * **Sorting:** Newest first (`date descending`).
 * **Pagination:** 10 records per page.
 
-*Note on Navigation Scope:* As specified in the project requirements (`COMPONENT_AND_TEST_SPEC.txt`), this implementation focuses on a single-page operations dashboard. `Overview` and `Transactions` serve as the active navigation anchors within this one-page scope, while `Customers`, `Products`, and `Settings` are visual navigation placeholders representing the broader platform shell.
+*Note on Navigation Scope:* This implementation focuses on a single-page operations dashboard. `Overview` and `Transactions` serve as the active navigation anchors within this one-page scope, while `Customers`, `Products`, and `Settings` are visual navigation placeholders representing the broader platform shell.
 
 ### Baseline Dataset Summary (96 Records)
 * Total Transactions: 96
